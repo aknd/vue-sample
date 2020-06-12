@@ -1,4 +1,5 @@
 import Vue from 'vue'
+// eslint-disable-next-line no-unused-vars
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
 
