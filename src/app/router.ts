@@ -4,7 +4,7 @@ import { TopPage } from '@/top'
 
 Vue.use(VueRouter)
 
-const routes: Array<RouteConfig> = [
+const routes: RouteConfig[] = [
   {
     path: '/',
     name: 'TopPage',
