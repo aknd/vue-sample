@@ -13,10 +13,16 @@ import { _, API, RawCartItem, CartItem } from '@/common'
   }
 })
 export default class CartPage extends Vue {
+  cartItems: CartItem[] = []
+
   async created() {
+    await this.handleGetCartItems()
+  }
+
+  async handleGetCartItems() {
     const rawItems = await API.get('/cart_items') as RawCartItem[]
     const items = _.camelCaseObject(rawItems) as CartItem[]
-    console.dir(items)
+    this.cartItems = items
   }
 }
 </script>
