@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { _, API, RawItem, Item } from '@/common'
+import { _, API, RawCartItem, CartItem } from '@/common'
 
 @Component({
   components: {
@@ -14,8 +14,8 @@ import { _, API, RawItem, Item } from '@/common'
 })
 export default class CartPage extends Vue {
   async created() {
-    const rawItems = await API.get('/items') as RawItem[]
-    const items = _.camelCaseObject(rawItems) as Item[]
+    const rawItems = await API.get('/cart_items') as RawCartItem[]
+    const items = _.camelCaseObject(rawItems) as CartItem[]
     console.dir(items)
   }
 }
