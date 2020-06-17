@@ -6,7 +6,7 @@ export interface RawItem {
 }
 
 export interface RawCartItem extends RawItem {
-  readonly will_purchase: string
+  readonly will_purchase: boolean
 }
 
 export interface Item {
@@ -17,5 +17,5 @@ export interface Item {
 }
 
 export interface CartItem extends Item {
-  readonly willPurchase: string
+  readonly willPurchase: boolean
 }
