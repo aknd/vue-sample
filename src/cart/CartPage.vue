@@ -1,5 +1,5 @@
 <template>
-  <ul style="list-style-type:none">
+  <ul>
     <cart-item-panel
       v-for="item in cartItems"
       :key="item.id"

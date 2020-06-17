@@ -1,9 +1,9 @@
 <template>
-  <li>
+  <li class="cart-item-panel">
+    <div :style="itemImageStyle" />
     <div>
       <p>{{ cartItem.id }}</p>
       <p>{{ cartItem.productName }}</p>
-      <p>{{ active ? '' : '後'}}</p>
     </div>
     <div>
       <button @click="handleRemove">
@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { CartItem } from '@/common'
+import { _, CartItem } from '@/common'
 
 @Component
 export default class CartItemPanel extends Vue {
@@ -29,6 +29,19 @@ export default class CartItemPanel extends Vue {
 
   get active(): boolean {
     return !this.cartItem.willPurchase
+  }
+
+  get itemImageStyle(): object {
+    return _.pickBy({
+      width: '300px',
+      height: '300px',
+      'background-image': `url(${this.cartItem.imageUrl})`,
+      'background-position': 'center',
+      'background-repeat': 'no-repeat',
+      'background-size': 'contain',
+      'background-color': !this.active && 'lightgray',
+      'background-blend-mode': !this.active && 'multiply'
+    }, _.isString)
   }
 
   handleRemove() {
@@ -44,3 +57,15 @@ export default class CartItemPanel extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.cart-item-panel {
+  width: 300px;
+  font-size: 24px;
+  list-style: none;
+}
+button {
+  width: 220px;
+  font-size: 20px;
+}
+</style>
