@@ -11,6 +11,14 @@ const routes: RouteConfig[] = [
     component: TopPage
   },
   {
+    path: '/job_errors',
+    name: 'JobErrorsPage',
+    // route level code-splitting
+    // this generates a separate chunk (job-errors-page.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: 'job-errors-page' */ '@/jobErrors/JobErrorsPage.vue')
+  },
+  {
     path: '/cart',
     name: 'CartPage',
     // route level code-splitting
