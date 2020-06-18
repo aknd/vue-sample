@@ -4,8 +4,8 @@
       v-for="item in cartItems"
       :key="item.id"
       :cartItem="item"
-      @delete="handleDeleteCartItem"
-      @patch="handlePatchCartItem"
+      @remove="handleDeleteCartItem"
+      @update="handlePatchCartItem"
     />
   </ul>
 </template>

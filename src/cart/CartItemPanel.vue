@@ -9,10 +9,10 @@
       <button @click="handleRemove">
         カートから取り除く
       </button>
-      <button v-if="active" @click="handleInactivate">
+      <button v-if="active" @click="handleToggleActive">
         後で買う
       </button>
-      <button v-else @click="handleActivate">
+      <button v-else @click="handleToggleActive">
         今すぐ買う
       </button>
     </div>
@@ -32,28 +32,28 @@ export default class CartItemPanel extends Vue {
   }
 
   get itemImageStyle(): object {
-    return _.pickBy({
-      width: '300px',
-      height: '300px',
-      'background-image': `url(${this.cartItem.imageUrl})`,
-      'background-position': 'center',
-      'background-repeat': 'no-repeat',
-      'background-size': 'contain',
-      'background-color': !this.active && 'lightgray',
-      'background-blend-mode': !this.active && 'multiply'
-    }, _.isString)
+    return _.pickBy(
+      {
+        width: '300px',
+        height: '300px',
+        'background-image': `url(${this.cartItem.imageUrl})`,
+        'background-position': 'center',
+        'background-repeat': 'no-repeat',
+        'background-size': 'contain',
+        'background-color': !this.active && 'lightgray',
+        'background-blend-mode': !this.active && 'multiply'
+      },
+      _.isString
+    )
   }
 
   handleRemove() {
-    this.$emit('delete', this.cartItem.id)
+    this.$emit('remove', this.cartItem.id)
   }
 
-  handleInactivate() {
-    this.$emit('patch', this.cartItem.id, { willPurchase: true })
-  }
-
-  handleActivate() {
-    this.$emit('patch', this.cartItem.id, { willPurchase: false })
+  handleToggleActive() {
+    const { id, willPurchase } = this.cartItem
+    this.$emit('update', id, { willPurchase: !willPurchase })
   }
 }
 </script>
