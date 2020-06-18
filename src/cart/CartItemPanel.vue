@@ -1,10 +1,7 @@
 <template>
   <li class="cart-item-panel">
+    {{ cartItem.productName }}: {{ cartItem.unitPrice }}円
     <div :style="itemImageStyle" />
-    <div>
-      <p>{{ cartItem.id }}</p>
-      <p>{{ cartItem.productName }}</p>
-    </div>
     <div>
       <button @click="handleRemove">
         カートから取り除く
@@ -28,7 +25,7 @@ export default class CartItemPanel extends Vue {
   @Prop() cartItem!: CartItem
 
   get active(): boolean {
-    return !this.cartItem.willPurchase
+    return this.cartItem.willPurchase
   }
 
   get itemImageStyle(): object {
@@ -36,11 +33,11 @@ export default class CartItemPanel extends Vue {
       {
         width: '300px',
         height: '300px',
-        'background-image': `url(${this.cartItem.imageUrl})`,
-        'background-position': 'center',
-        'background-repeat': 'no-repeat',
-        'background-size': 'contain',
         'background-color': !this.active && 'lightgray',
+        'background-image': `url(${this.cartItem.imageUrl})`,
+        'background-repeat': 'no-repeat',
+        'background-position': 'center',
+        'background-size': 'contain',
         'background-blend-mode': !this.active && 'multiply'
       },
       _.isString
