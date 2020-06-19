@@ -1,21 +1,19 @@
-export interface RawItem {
-  readonly id: string
+export type Brand<K, T> = K & { __brand: T }
+
+export type CartItemId = Brand<string, 'CartItemId'>
+
+export interface RawCartItem {
+  readonly id: CartItemId
   readonly image_url: string
   readonly product_name: string
-  readonly unit_price: string
-}
-
-export interface RawCartItem extends RawItem {
+  readonly unit_price: number
   readonly will_purchase: boolean
 }
 
-export interface Item {
-  readonly id: string
+export interface CartItem {
+  readonly id: CartItemId
   readonly imageUrl: string
   readonly productName: string
-  readonly unitPrice: string
-}
-
-export interface CartItem extends Item {
+  readonly unitPrice: number
   readonly willPurchase: boolean
 }
