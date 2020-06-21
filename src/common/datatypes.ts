@@ -1,5 +1,21 @@
 export type Brand<K, T> = K & { __brand: T }
 
+export type TodoId = Brand<number, 'TodoId'>
+
+export interface RawTodo {
+  readonly id: TodoId
+  readonly content: string
+  readonly limit_at: string
+  readonly completed: boolean
+}
+
+export interface Todo {
+  readonly id: TodoId
+  readonly content: string
+  readonly limitAt: string
+  readonly completed: boolean
+}
+
 export type CartItemId = Brand<string, 'CartItemId'>
 
 export interface RawCartItem {

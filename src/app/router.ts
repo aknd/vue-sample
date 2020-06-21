@@ -11,6 +11,14 @@ const routes: RouteConfig[] = [
     component: TopPage
   },
   {
+    path: '/todos',
+    name: 'TodoListPage',
+    // route level code-splitting
+    // this generates a separate chunk (todo-list-page.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: 'todo-list-page' */ '@/todos/TodoListPage.vue')
+  },
+  {
     path: '/job_errors',
     name: 'JobErrorsPage',
     // route level code-splitting
