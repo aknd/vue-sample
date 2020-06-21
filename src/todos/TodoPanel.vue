@@ -1,5 +1,5 @@
 <template>
-  <li class="todo-panel" :style="style">
+  <li :class="rootClass">
     <div>{{ todo.content }}&nbsp;{{ notification }}</div>
     <div class="todo-panel__limit">
       <div>
@@ -18,22 +18,12 @@ const notifications = {
   CLOSE_TO_LIMIT: '※期限が迫っています',
   LIMIT_OVER: '※期限が過ぎています'
 } as const
-const styles = {
-  NORMAL: {
-    'border-color': 'green'
-  },
-  CLOSE_TO_LIMIT: {
-    'background-color': 'yellow',
-    'border-color': 'yellow'
-  },
-  LIMIT_OVER: {
-    color: 'white',
-    'font-weight': 'bold',
-    'background-color': 'red',
-    'border-color': 'red'
-  }
+const classes = {
+  NORMAL: 'normal',
+  CLOSE_TO_LIMIT: 'close-to-limit',
+  LIMIT_OVER: 'limit-over'
 } as const
-type TodoState = keyof typeof notifications | keyof typeof styles
+type TodoState = keyof typeof notifications | keyof typeof classes
 
 @Component
 export default class TodoPanel extends Vue {
@@ -56,8 +46,14 @@ export default class TodoPanel extends Vue {
     return _.get(notifications, this.todoState, '')
   }
 
-  get style(): object {
-    return _.get(styles, this.todoState, {})
+  get rootClass(): string {
+    return _.reject(
+      [
+        'todo-panel',
+        _.get(classes, this.todoState)
+      ],
+      _.isEmpty
+    ).join(' ')
   }
 
   handleChangeLimitAt({ target }: { target: HTMLInputElement }) {
@@ -78,6 +74,19 @@ export default class TodoPanel extends Vue {
   padding-left: 10px;
   border-style: solid;
   border-width: 1px;
+}
+.normal {
+  border-color: green;
+}
+.close-to-limit {
+  background-color: yellow;
+  border-color: yellow;
+}
+.limit-over {
+  color: white;
+  font-weight: bold;
+  background-color: red;
+  border-color: red;
 }
 .todo-panel__limit {
   display: flex;
