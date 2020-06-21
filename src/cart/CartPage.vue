@@ -10,12 +10,12 @@
     </div>
     <ul class="cart-item-list">
       <cart-item-panel
-        class="cart-item-list__item"
         v-for="item in cartItems"
         :key="item.id"
         :cartItem="item"
         @remove="handleDeleteCartItem"
         @update="handlePatchCartItem"
+        class="cart-item-list__item"
       />
     </ul>
   </div>

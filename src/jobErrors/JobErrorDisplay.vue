@@ -1,5 +1,5 @@
 <template>
-  <li>{{ errorMessage }}</li>
+  <li class="job-error-message">{{ errorMessage }}</li>
 </template>
 
 <script lang="ts">
@@ -45,3 +45,9 @@ export default class JobErrorDisplay extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.job-error-message {
+  list-style: none;
+}
+</style>

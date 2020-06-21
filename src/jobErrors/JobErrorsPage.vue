@@ -2,7 +2,7 @@
   <div>
     <h1>Error Job</h1>
     <ul>
-      <li v-for="name in jobErrorNames" :key="name">
+      <li v-for="name in jobErrorNames" :key="name" class="job-error-check">
         エラー:{{ name }}
         <input type="checkbox" :value="name" @input="handleClickCheckbox" />
       </li>
@@ -67,7 +67,7 @@ export default class JobErrorsPage extends Vue {
 </script>
 
 <style scoped>
-li {
+.job-error-check {
   list-style: none;
 }
 </style>
