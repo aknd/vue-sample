@@ -2,15 +2,19 @@
   <div>
     <h1>Error Job</h1>
     <ul>
-      <li v-for="errorName in jobErrorNames" :key="errorName">
-        エラー:{{ errorName }}
-        <input type="checkbox" :value="errorName" @input="handleClickCheckbox" />
+      <li v-for="name in jobErrorNames" :key="name">
+        エラー:{{ name }}
+        <input type="checkbox" :value="name" @input="handleClickCheckbox" />
       </li>
     </ul>
     <button @click="run">処理開始</button>
     <button @click="reset">リセット</button>
     <ul>
-      <li v-for="(error, i) in jobErrors" :key="i">{{ error.message }}</li>
+      <job-error-display
+        v-for="name in emittedJobErrorNames"
+        :key="name"
+        :jobErrorName="name"
+      />
     </ul>
   </div>
 </template>
@@ -18,9 +22,16 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { _ } from '@/common'
-import { jobErrorNameDict, JobErrorName, JobError } from './JobError'
+import JobErrorDisplay, {
+  jobErrorNameDict,
+  JobErrorName
+} from './JobErrorDisplay.vue'
 
-@Component
+@Component({
+  components: {
+    JobErrorDisplay
+  }
+})
 export default class JobErrorsPage extends Vue {
   jobErrorNames: JobErrorName[] = [
     jobErrorNameDict.CONFLICTED,
@@ -30,7 +41,7 @@ export default class JobErrorsPage extends Vue {
     jobErrorNameDict.TIMEOUT
   ]
   enabledJobErrorNames: JobErrorName[] = []
-  jobErrors: JobError[] = []
+  emittedJobErrorNames: JobErrorName[] = []
 
   handleClickCheckbox({ target }: { target: HTMLInputElement }) {
     const errorName = target.value as JobErrorName
@@ -40,17 +51,17 @@ export default class JobErrorsPage extends Vue {
   }
 
   run() {
-    this.jobErrors = this.jobErrorNames.reduce(
-      (acc: JobError[], cur: JobErrorName) =>
+    this.emittedJobErrorNames = this.jobErrorNames.reduce(
+      (acc: JobErrorName[], cur: JobErrorName) =>
         this.enabledJobErrorNames.includes(cur)
-          ? [...acc, new JobError(cur)]
+          ? [...acc, cur]
           : acc,
       []
     )
   }
 
   reset() {
-    this.jobErrors = []
+    this.emittedJobErrorNames = []
   }
 }
 </script>
