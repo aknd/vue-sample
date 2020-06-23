@@ -19,6 +19,14 @@ const routes: RouteConfig[] = [
     component: () => import(/* webpackChunkName: 'todo-list-page' */ '@/todos/TodoListPage.vue')
   },
   {
+    path: '/loading_button',
+    name: 'LoadingButtonPage',
+    // route level code-splitting
+    // this generates a separate chunk (loading-button-page.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: 'loading-button-page' */ '@/loadingButton/LoadingButtonPage.vue')
+  },
+  {
     path: '/job_errors',
     name: 'JobErrorsPage',
     // route level code-splitting

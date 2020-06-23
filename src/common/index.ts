@@ -10,3 +10,4 @@ export {
   CartItem
 } from './datatypes'
 export { buildMoment } from './datetime-util'
+export { default as Button } from './components/Button.vue'
