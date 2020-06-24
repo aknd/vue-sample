@@ -12,8 +12,13 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { Radio, RadioOption, Button } from '@/common'
 
-const statuses = ['loading', 'success', 'failed'] as const
-type Status =  typeof statuses[number]
+const statuses = {
+  LOADING: 'loading',
+  SUCCESS: 'success',
+  FAILED: 'failed'
+} as const
+type StatusKey = keyof typeof statuses
+type Status =  typeof statuses[StatusKey]
 
 @Component({
   components: {
@@ -22,28 +27,32 @@ type Status =  typeof statuses[number]
   }
 })
 export default class LoadingButtonPage extends Vue {
-  status: Status = statuses[0]
-  radioOptions: RadioOption[] = statuses.map(s => ({ label: s, value: s }))
+  status: Status = statuses.LOADING
+  radioOptions: RadioOption[] = [
+    statuses.LOADING,
+    statuses.SUCCESS,
+    statuses.FAILED
+  ].map((s: Status) => ({ label: s, value: s}))
 
   get isButtonDisabled(): boolean {
-    return this.status === statuses[0]
+    return this.status === statuses.LOADING
   }
 
   get buttonLabel(): string {
-    if (this.status === statuses[1]) {
+    if (this.status === statuses.SUCCESS) {
       return 'Click Me!!'
     }
-    if (this.status === statuses[2]) {
+    if (this.status === statuses.FAILED) {
       return 'Please Retry'
     }
     return 'Now Loading...'
   }
 
   handleAction() {
-    if (this.status === statuses[1]) {
+    if (this.status === statuses.SUCCESS) {
       alert('Success!!')
     }
-    if (this.status === statuses[2]) {
+    if (this.status === statuses.FAILED) {
       location.reload()
     }
   }

@@ -1,1 +1,1 @@
-export { default as LoadingButtonPage } from './LoadingButtonPage'
+export { default as LoadingButtonPage } from './LoadingButtonPage.vue'
