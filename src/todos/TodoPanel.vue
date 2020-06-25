@@ -13,7 +13,7 @@
 <script lang="ts">
 import _ from 'lodash'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { Todo, buildMoment } from '@/common'
+import { Todo, buildDayjs } from '@/common'
 
 const notifications = {
   CLOSE_TO_LIMIT: '※期限が迫っています',
@@ -32,9 +32,9 @@ export default class TodoPanel extends Vue {
   @Prop() baseDate?: Date | string
 
   get todoState (): TodoState {
-    const base = buildMoment(this.baseDate)
-    const limit = buildMoment(this.todo.limitAt)
-    if (limit.isAfter(base.clone().add(3, 'days'))) {
+    const base = buildDayjs(this.baseDate)
+    const limit = buildDayjs(this.todo.limitAt)
+    if (limit.isAfter(base.add(3, 'day'))) {
       return 'NORMAL' as TodoState
     }
     if (limit.isSameOrAfter(base)) {

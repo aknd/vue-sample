@@ -9,4 +9,4 @@ export {
   RawCartItem,
   CartItem
 } from './datatypes'
-export { buildMoment } from './datetime-util'
+export { buildDayjs } from './datetime-util'
