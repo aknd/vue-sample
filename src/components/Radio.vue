@@ -14,7 +14,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { RadioOption } from './proptypes'
+
+export interface RadioOption {
+  label: string
+  value: string
+}
 
 @Component
 export default class Radio extends Vue {

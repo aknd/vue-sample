@@ -11,8 +11,9 @@
 </template>
 
 <script lang="ts">
+import _ from 'lodash'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { _, Todo, buildMoment } from '@/common'
+import { Todo, buildMoment } from '@/common'
 
 const notifications = {
   CLOSE_TO_LIMIT: '※期限が迫っています',

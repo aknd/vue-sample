@@ -17,8 +17,9 @@
 </template>
 
 <script lang="ts">
+import _ from 'lodash'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { _, CartItem } from '@/common'
+import { CartItem } from '@/common'
 
 @Component
 export default class CartItemPanel extends Vue {

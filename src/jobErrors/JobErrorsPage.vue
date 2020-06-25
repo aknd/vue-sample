@@ -20,8 +20,8 @@
 </template>
 
 <script lang="ts">
+import _ from 'lodash'
 import { Component, Vue } from 'vue-property-decorator'
-import { _ } from '@/common'
 import JobErrorDisplay, {
   jobErrorNameDict,
   JobErrorName

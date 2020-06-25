@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
+import _ from 'lodash'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { _ } from '@/common'
 
 @Component
 export default class Button extends Vue {

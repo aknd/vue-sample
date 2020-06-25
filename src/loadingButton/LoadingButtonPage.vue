@@ -10,7 +10,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { Radio, RadioOption, Button } from '@/common'
+import Radio, { RadioOption } from '@/components/Radio.vue'
+import Button from '@/components/Button.vue'
 
 const statuses = {
   LOADING: 'loading',
