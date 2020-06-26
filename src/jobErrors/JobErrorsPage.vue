@@ -4,7 +4,7 @@
     <ul>
       <li v-for="name in jobErrorNames" :key="name" class="job-error-check">
         エラー:{{ name }}
-        <input type="checkbox" :value="name" @input="handleClickCheckbox" />
+        <input type="checkbox" :value="name" v-model="enabledJobErrorNames" />
       </li>
     </ul>
     <button @click="run">処理開始</button>
@@ -20,7 +20,6 @@
 </template>
 
 <script lang="ts">
-import _ from 'lodash'
 import { Component, Vue } from 'vue-property-decorator'
 import JobErrorDisplay, {
   jobErrorNameDict,
@@ -42,13 +41,6 @@ export default class JobErrorsPage extends Vue {
   ]
   enabledJobErrorNames: JobErrorName[] = []
   emittedJobErrorNames: JobErrorName[] = []
-
-  handleClickCheckbox({ target }: { target: HTMLInputElement }) {
-    const errorName = target.value as JobErrorName
-    this.enabledJobErrorNames = target.checked
-      ? _.uniq([...this.enabledJobErrorNames, errorName])
-      : _.without(this.enabledJobErrorNames, errorName)
-  }
 
   run() {
     this.emittedJobErrorNames = this.jobErrorNames.reduce(
