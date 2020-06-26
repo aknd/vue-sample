@@ -2,7 +2,7 @@
   <div>
     <h1>Loading Button</h1>
     <radio v-model="status" :options="radioOptions" />
-    <btn :disabled="isButtonDisabled" @action="handleAction">
+    <btn :disabled="isButtonDisabled" @click="handleClickButton">
       {{ buttonLabel }}
     </btn>
   </div>
@@ -48,7 +48,7 @@ export default class LoadingButtonPage extends Vue {
     return 'Now Loading...'
   }
 
-  handleAction() {
+  handleClickButton(_event: Event) {
     if (this.status === statuses.SUCCESS) {
       alert('Success!!')
     }

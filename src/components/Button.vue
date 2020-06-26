@@ -19,8 +19,8 @@ export default class Button extends Vue {
     return this.disabled
   }
 
-  handleClick(_event: Event) {
-    this.$emit('action')
+  handleClick(event: Event) {
+    this.$emit('click', event)
   }
 }
 </script>
