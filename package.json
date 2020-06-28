@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 8888",
+    "serve": "vue-cli-service serve --port 8100",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
     "db:reset": "cp ./db.seeds.json ./db.json",
-    "api": "json-server --watch db.json --port 3000",
+    "api": "json-server --watch db.json --port 3100",
     "api:reset": "run-s db:reset api",
     "start": "run-p api:reset serve"
   },

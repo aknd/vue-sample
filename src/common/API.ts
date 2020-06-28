@@ -10,7 +10,7 @@ class API {
 
   constructor() {
     this.client = axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL: 'http://localhost:3100',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
