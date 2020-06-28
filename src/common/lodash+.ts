@@ -12,7 +12,7 @@ const convertObject = (
   keyConverter: (key: string) => string,
   omitBy?: (value: any) => boolean
 ): any => {
-  if (!_.isObject(obj) || _.isEmpty(obj)) {
+  if (!_.isArray(obj) && !_.isPlainObject(obj)) {
     return obj
   }
   if (_.isArray(obj)) {
