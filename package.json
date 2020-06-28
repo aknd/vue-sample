@@ -7,9 +7,10 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
+    "db:reset": "cp ./db.seeds.json ./db.json",
     "api": "json-server --watch db.json --port 3000",
-    "start": "run-p api serve",
-    "db:reset": "cp ./db.example.json ./db.json"
+    "api:reset": "run-s db:reset api",
+    "start": "run-p api:reset serve"
   },
   "dependencies": {
     "axios": "^0.19.2",
