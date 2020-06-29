@@ -16,31 +16,34 @@ const routes: RouteConfig[] = [
     // route level code-splitting
     // this generates a separate chunk (todo-list-page.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: 'todo-list-page' */ '@/todos/TodoListPage.vue')
+    component: () =>
+      import(
+        /* webpackChunkName: 'todo-list-page' */ '@/todos'
+      ).then(m => m.TodoListPage)
   },
   {
     path: '/loading_button',
     name: 'LoadingButtonPage',
-    // route level code-splitting
-    // this generates a separate chunk (loading-button-page.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: 'loading-button-page' */ '@/loadingButton/LoadingButtonPage.vue')
+    component: () =>
+      import(
+        /* webpackChunkName: 'loading-button-page' */ '@/loadingButton'
+      ).then(m => m.LoadingButtonPage)
   },
   {
     path: '/job_errors',
     name: 'JobErrorsPage',
-    // route level code-splitting
-    // this generates a separate chunk (job-errors-page.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: 'job-errors-page' */ '@/jobErrors/JobErrorsPage.vue')
+    component: () =>
+      import(
+        /* webpackChunkName: 'job-errors-page' */ '@/jobErrors'
+      ).then(m => m.JobErrorsPage)
   },
   {
     path: '/cart',
     name: 'CartPage',
-    // route level code-splitting
-    // this generates a separate chunk (cart-page.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: 'cart-page' */ '@/cart/CartPage.vue')
+    component: () =>
+      import(
+        /* webpackChunkName: 'cart-page' */ '@/cart'
+      ).then(m => m.CartPage)
   }
 ]
 
