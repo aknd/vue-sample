@@ -34,16 +34,16 @@ import CartItemPanel from './CartItemPanel.vue'
 export default class CartPage extends Vue {
   cartItems: CartItem[] = []
 
-  get cartItemsWillPurchase(): CartItem[] {
+  get activeCartItems(): CartItem[] {
     return _.filter(this.cartItems, { willPurchase: true })
   }
 
   get totalCount(): number {
-    return this.cartItemsWillPurchase.length
+    return this.activeCartItems.length
   }
 
   get totalPrice(): number {
-    return _.sumBy(this.cartItemsWillPurchase, 'unitPrice')
+    return _.sumBy(this.activeCartItems, 'unitPrice')
   }
 
   async created() {
