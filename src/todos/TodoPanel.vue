@@ -1,9 +1,9 @@
 <template>
   <li :class="rootClass">
-    <div>{{ todo.content }}&nbsp;{{ notification }}</div>
+    <div>{{ todo.content }}{{ notification && ' ' }}{{ notification }}</div>
     <div class="todo-panel__limit">
       <div>
-        期限:&nbsp;
+        期限:
         <input type="date" :value="todo.limitAt" @change="handleChangeLimitAt">
       </div>
     </div>
