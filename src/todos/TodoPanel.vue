@@ -48,12 +48,12 @@ export default class TodoPanel extends Vue {
   }
 
   get rootClass(): string {
-    return _.reject(
+    return _.filter(
       [
         'todo-panel',
         _.get(classes, this.todoState)
       ],
-      _.isEmpty
+      _.isString
     ).join(' ')
   }
 
