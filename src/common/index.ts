@@ -10,3 +10,4 @@ export {
   CartItem
 } from './datatypes'
 export { buildDayjs } from './datetime-util'
+export { Log, Catch } from './vue-custom-decorators'

@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { _, API, CartItemId, RawCartItem, CartItem } from '@/common'
+import { _, API, CartItemId, RawCartItem, CartItem, Log, Catch } from '@/common'
 import CartItemPanel from './CartItemPanel.vue'
 
 @Component({
@@ -50,16 +50,22 @@ export default class CartPage extends Vue {
     await this.handleGetCartItems()
   }
 
+  @Catch('handleError')
+  @Log()
   async handleGetCartItems() {
     const rawItems = await API.get('/cart_items') as RawCartItem[]
     this.cartItems = _.camelCaseObject(rawItems) as CartItem[]
   }
 
+  @Catch('handleError')
+  @Log()
   async handleDeleteCartItem(id: CartItemId) {
     await API.delete(`/cart_items/${id}`)
     this.cartItems = _.reject(this.cartItems, { id })
   }
 
+  @Catch('handleError')
+  @Log()
   async handlePatchCartItem(id: CartItemId, partialItem: Partial<CartItem>) {
     const requestData = _.snakeCaseObject(partialItem) as Partial<RawCartItem>
     await API.patch(`/cart_items/${id}`, requestData)
@@ -71,6 +77,10 @@ export default class CartPage extends Vue {
           }
         : item
     )
+  }
+
+  handleError(error: Error) {
+    alert(`エラー: ${error.toString()}`)
   }
 }
 </script>

@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { _, API, TodoId, RawTodo, Todo } from '@/common'
+import { _, API, TodoId, RawTodo, Todo, Log, Catch } from '@/common'
 import TodoPanel from './TodoPanel.vue'
 
 @Component({
@@ -22,18 +22,22 @@ import TodoPanel from './TodoPanel.vue'
     TodoPanel
   }
 })
-export default class StatePattern extends Vue {
+export default class TodoListPage extends Vue {
   todos: Todo[] = []
 
   async created() {
     await this.handleGetTodos()
   }
 
+  @Catch('handleError')
+  @Log()
   async handleGetTodos() {
     const rawTodos = await API.get('/todos') as RawTodo[]
     this.todos = _.camelCaseObject(rawTodos) as Todo[]
   }
 
+  @Catch('handleError')
+  @Log()
   async handlePatchTodo(id: TodoId, partialTodo: Partial<Todo>) {
     const requestData = _.snakeCaseObject(partialTodo) as Partial<RawTodo>
     await API.patch(`/todos/${id}`, requestData)
@@ -45,6 +49,10 @@ export default class StatePattern extends Vue {
           }
         : todo
     )
+  }
+
+  handleError(error: Error) {
+    alert(`エラー: ${error.toString()}`)
   }
 }
 </script>
