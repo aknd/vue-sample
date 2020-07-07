@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { Vue } from 'vue-property-decorator'
 import { createDecorator, VueDecorator } from 'vue-class-component'
-import { buildDayjs } from './datetime-util'
+import { formatDate } from './datetime-util'
 
 const getComponentName = (vm: Vue): string =>
   (vm.$vnode.tag || '').replace(/vue-component-\d+-/i, '')
@@ -22,7 +22,7 @@ export const Log = (): VueDecorator =>
       const componentName = getComponentName(this)
       const header = `method ${
         originalMethod.name
-      } @ ${componentName} ${buildDayjs().format('HH:mm:ss')}`
+      } @ ${componentName} ${formatDate(new Date(), 'HH:mm:ss')}`
       const prevData = _.cloneDeep(this.$data)
 
       try {

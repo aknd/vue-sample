@@ -11,3 +11,9 @@ dayjs.extend(relativeTime)
 
 export const buildDayjs = (date?: string | number | Dayjs | Date): Dayjs =>
   dayjs(date)
+
+export const formatDate = (
+  date?: string | number | Date,
+  format = 'YYYY-MM-DD HH:mm:ss'
+): string =>
+  buildDayjs(date).format(format)

@@ -10,5 +10,5 @@ export {
   RawCartItem,
   CartItem
 } from './datatypes'
-export { buildDayjs } from './datetime-util'
+export { buildDayjs, formatDate } from './datetime-util'
 export { Log, Catch } from './vue-custom-decorators'
