@@ -1,5 +1,8 @@
 # vue-sample
 
+## Environment setup
+- Required Node.js version: 12.11.1 or higher
+
 ## Project setup
 ```
 npm install
@@ -7,7 +10,7 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run start
 ```
 
 ### Compiles and minifies for production
@@ -15,7 +18,7 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
+### Lints files
 ```
 npm run lint
 ```
