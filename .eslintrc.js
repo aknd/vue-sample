@@ -6,8 +6,8 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
-    'eslint:recommended'
-    // '@vue/typescript/recommended'
+    'eslint:recommended',
+    '@vue/typescript'
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -16,13 +16,13 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    // '@typescript-eslint',
+    '@typescript-eslint',
     'import'
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-shadow': 'off',
+    'no-shadow': 'error',
     'no-multiple-empty-lines': [
       'error',
       {
@@ -30,18 +30,17 @@ module.exports = {
       }
     ],
     'no-unused-vars': [
-      'off'
-      // 'error',
-      // {
-      //   'argsIgnorePattern': '^_'
-      // }
+      'error',
+      {
+        'argsIgnorePattern': '^_'
+      }
     ],
-    // '@typescript-eslint/no-unused-vars': [
-    //   'error',
-    //   {
-    //     'argsIgnorePattern': '^_'
-    //   }
-    // ],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        'argsIgnorePattern': '^_'
+      }
+    ],
     'import/imports-first': 'error',
     'import/newline-after-import': 'error'
   }

@@ -29,7 +29,7 @@ export default class CartItemPanel extends Vue {
     return this.cartItem.willPurchase
   }
 
-  get itemImageStyle(): object {
+  get itemImageStyle(): { [propName: string]: string } {
     return _.pickBy(
       {
         width: '300px',
