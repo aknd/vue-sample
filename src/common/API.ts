@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
+import { JSONObject } from './json'
 
 const invokeRequest = async (
   request: () => Promise<AxiosResponse>
@@ -21,36 +22,31 @@ class API {
     })
   }
 
-  async get(path: string, params?: any): Promise<any> {
+  async get(path: string, params?: JSONObject): Promise<any> {
     const request = (): Promise<AxiosResponse> =>
       this.client.get(path, { params })
-    const responseData = await invokeRequest(request)
-    return responseData
+    return await invokeRequest(request)
   }
 
-  async delete(path: string, params?: any): Promise<any> {
+  async delete(path: string, params?: JSONObject): Promise<any> {
     const request = (): Promise<AxiosResponse> =>
       this.client.delete(path, { params })
-    const responseData = await invokeRequest(request)
-    return responseData
+    return await invokeRequest(request)
   }
 
-  async post(path: string, data: any): Promise<any> {
+  async post(path: string, data: JSONObject): Promise<any> {
     const request = (): Promise<AxiosResponse> => this.client.post(path, data)
-    const responseData = await invokeRequest(request)
-    return responseData
+    return await invokeRequest(request)
   }
 
-  async put(path: string, data: any): Promise<any> {
+  async put(path: string, data: JSONObject): Promise<any> {
     const request = (): Promise<AxiosResponse> => this.client.put(path, data)
-    const responseData = await invokeRequest(request)
-    return responseData
+    return await invokeRequest(request)
   }
 
-  async patch(path: string, data: any): Promise<any> {
+  async patch(path: string, data: JSONObject): Promise<any> {
     const request = (): Promise<AxiosResponse> => this.client.patch(path, data)
-    const responseData = await invokeRequest(request)
-    return responseData
+    return await invokeRequest(request)
   }
 }
 

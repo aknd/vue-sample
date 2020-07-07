@@ -19,7 +19,16 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { _, API, CartItemId, RawCartItem, CartItem, Log, Catch } from '@/common'
+import {
+  _,
+  API,
+  JSONObject,
+  CartItemId,
+  RawCartItem,
+  CartItem,
+  Log,
+  Catch
+} from '@/common'
 import CartItemPanel from './CartItemPanel.vue'
 
 @Component({
@@ -63,7 +72,10 @@ export default class CartPage extends Vue {
   @Catch('handleError')
   @Log()
   async handlePatchCartItem(id: CartItemId, partialItem: Partial<CartItem>) {
-    const requestData = _.snakeCaseObject(partialItem) as Partial<RawCartItem>
+    const requestData = _.snakeCaseObject(
+      partialItem,
+      _.isUndefined
+    ) as JSONObject
     await API.patch(`/cart_items/${id}`, requestData)
     this.cartItems = this.cartItems.map((item: CartItem) =>
       item.id === id

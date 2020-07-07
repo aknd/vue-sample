@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { _, API, TodoId, RawTodo, Todo, Log, Catch } from '@/common'
+import { _, API, JSONObject, TodoId, RawTodo, Todo, Log, Catch } from '@/common'
 import TodoPanel from './TodoPanel.vue'
 
 @Component({
@@ -39,7 +39,10 @@ export default class TodoListPage extends Vue {
   @Catch('handleError')
   @Log()
   async handlePatchTodo(id: TodoId, partialTodo: Partial<Todo>) {
-    const requestData = _.snakeCaseObject(partialTodo) as Partial<RawTodo>
+    const requestData = _.snakeCaseObject(
+      partialTodo,
+      _.isUndefined
+    ) as JSONObject
     await API.patch(`/todos/${id}`, requestData)
     this.todos = this.todos.map((todo: Todo) =>
       todo.id === id
