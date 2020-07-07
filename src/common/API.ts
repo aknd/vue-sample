@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 
-const invokeRequest = async (request: () => Promise<AxiosResponse>): Promise<any> =>  {
+const invokeRequest = async (
+  request: () => Promise<AxiosResponse>
+): Promise<any> => {
   const response = await request()
   return response.data
 }

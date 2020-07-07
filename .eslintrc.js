@@ -32,13 +32,13 @@ module.exports = {
     'no-unused-vars': [
       'error',
       {
-        'argsIgnorePattern': '^_'
+        argsIgnorePattern: '^_'
       }
     ],
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
-        'argsIgnorePattern': '^_'
+        argsIgnorePattern: '^_'
       }
     ],
     'import/imports-first': 'error',

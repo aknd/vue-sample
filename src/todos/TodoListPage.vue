@@ -32,7 +32,7 @@ export default class TodoListPage extends Vue {
   @Catch('handleError')
   @Log()
   async handleGetTodos() {
-    const rawTodos = await API.get('/todos') as RawTodo[]
+    const rawTodos = (await API.get('/todos')) as RawTodo[]
     this.todos = _.camelCaseObject(rawTodos) as Todo[]
   }
 
@@ -41,7 +41,7 @@ export default class TodoListPage extends Vue {
   async handlePatchTodo(id: TodoId, partialTodo: Partial<Todo>) {
     const requestData = _.snakeCaseObject(partialTodo) as Partial<RawTodo>
     await API.patch(`/todos/${id}`, requestData)
-    this.todos = this.todos.map(todo =>
+    this.todos = this.todos.map((todo: Todo) =>
       todo.id === id
         ? {
             ...todo,

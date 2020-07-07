@@ -7,7 +7,7 @@
         :value="option.value"
         :checked="option.value === value"
         v-model="localValue"
-      >
+      />
     </div>
   </div>
 </template>

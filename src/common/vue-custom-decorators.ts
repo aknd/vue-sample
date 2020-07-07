@@ -15,7 +15,7 @@ export const Log = (): VueDecorator =>
     options.methods[key] = async function (...args: any[]): Promise<any> {
       if (!(this instanceof Vue)) {
         console.error(
-          'Return value of \'Log\' must be used as a vue custom decorator.'
+          "Return value of 'Log' must be used as a vue custom decorator."
         )
         return await originalMethod.apply(this, args)
       }
@@ -57,7 +57,7 @@ export const Catch = (handler: any = alert): VueDecorator =>
     options.methods[key] = async function (...args: any[]): Promise<any> {
       if (!(this instanceof Vue)) {
         console.error(
-          'Return value of \'Catch\' must be used as a vue custom decorator.'
+          "Return value of 'Catch' must be used as a vue custom decorator."
         )
         return await originalMethod.apply(this, args)
       }
@@ -79,7 +79,7 @@ export const Catch = (handler: any = alert): VueDecorator =>
           handler.call(null, error, this)
         } else {
           console.error(
-            'First argument of \'Catch\' must be of type string, function or undefined.'
+            "First argument of 'Catch' must be of type string, function or undefined."
           )
         }
       }

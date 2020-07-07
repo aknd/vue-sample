@@ -4,7 +4,11 @@
     <div class="todo-panel__limit">
       <div>
         期限:
-        <input type="date" :value="todo.limitAt" @change="handleChangeLimitAt">
+        <input
+          type="date"
+          :value="todo.limitAt"
+          @change="handleChangeLimitAt"
+        />
       </div>
     </div>
   </li>
@@ -31,7 +35,7 @@ export default class TodoPanel extends Vue {
   @Prop() todo!: Todo
   @Prop() baseDate?: Date | string
 
-  get todoState (): TodoState {
+  get todoState(): TodoState {
     const base = buildDayjs(this.baseDate)
     const limit = buildDayjs(this.todo.limitAt)
     if (limit.isAfter(base.add(3, 'day'))) {
@@ -49,10 +53,7 @@ export default class TodoPanel extends Vue {
 
   get rootClass(): string {
     return _.filter(
-      [
-        'todo-panel',
-        _.get(classes, this.todoState)
-      ],
+      ['todo-panel', _.get(classes, this.todoState)],
       _.isString
     ).join(' ')
   }

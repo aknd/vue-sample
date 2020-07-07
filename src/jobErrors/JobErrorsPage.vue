@@ -45,9 +45,7 @@ export default class JobErrorsPage extends Vue {
   run() {
     this.emittedJobErrorNames = this.jobErrorNames.reduce(
       (acc: JobErrorName[], cur: JobErrorName) =>
-        this.enabledJobErrorNames.includes(cur)
-          ? [...acc, cur]
-          : acc,
+        this.enabledJobErrorNames.includes(cur) ? [...acc, cur] : acc,
       []
     )
   }

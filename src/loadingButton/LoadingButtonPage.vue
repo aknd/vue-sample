@@ -18,7 +18,7 @@ const statuses = {
   FAILED: 'failed'
 } as const
 type StatusKey = keyof typeof statuses
-type Status =  typeof statuses[StatusKey]
+type Status = typeof statuses[StatusKey]
 
 @Component({
   components: {
@@ -32,7 +32,7 @@ export default class LoadingButtonPage extends Vue {
     statuses.LOADING,
     statuses.SUCCESS,
     statuses.FAILED
-  ].map((s: Status) => ({ label: s, value: s}))
+  ].map((s: Status) => ({ label: s, value: s }))
 
   get isButtonDisabled(): boolean {
     return this.status === statuses.LOADING
