@@ -12,7 +12,11 @@ npm install
 ```
 npm run start
 ```
-To initialize the database, press Ctrl-C to shut down the server and restart it.
+To initialize the database, run the following command
+```
+npm run db:reset
+```
+or press Ctrl-C to shut down the server and restart it.
 
 ### Compiles and minifies for production
 ```
