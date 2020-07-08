@@ -72,16 +72,14 @@ export default class CartPage extends Vue {
   @Catch('handleError')
   @Log()
   async handlePatchCartItem(id: CartItemId, partialItem: Partial<CartItem>) {
-    const requestData = _.snakeCaseObject(
-      partialItem,
-      _.isUndefined
-    ) as JSONObject
+    const diffItem = _.omitDeepBy(partialItem, _.isUndefined)
+    const requestData = _.snakeCaseObject(diffItem) as JSONObject
     await API.patch(`/cart_items/${id}`, requestData)
     this.cartItems = this.cartItems.map((item: CartItem) =>
       item.id === id
         ? {
             ...item,
-            ...partialItem
+            ...diffItem
           }
         : item
     )

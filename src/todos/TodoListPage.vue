@@ -39,16 +39,14 @@ export default class TodoListPage extends Vue {
   @Catch('handleError')
   @Log()
   async handlePatchTodo(id: TodoId, partialTodo: Partial<Todo>) {
-    const requestData = _.snakeCaseObject(
-      partialTodo,
-      _.isUndefined
-    ) as JSONObject
+    const diffTodo = _.omitDeepBy(partialTodo, _.isUndefined)
+    const requestData = _.snakeCaseObject(diffTodo) as JSONObject
     await API.patch(`/todos/${id}`, requestData)
     this.todos = this.todos.map((todo: Todo) =>
       todo.id === id
         ? {
             ...todo,
-            ...partialTodo
+            ...diffTodo
           }
         : todo
     )

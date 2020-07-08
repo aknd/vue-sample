@@ -4,6 +4,7 @@ declare module 'lodash' {
   interface LoDashStatic {
     camelCaseObject(obj: any, omitBy?: (value: any) => boolean): any
     snakeCaseObject(obj: any, omitBy?: (value: any) => boolean): any
+    omitDeepBy(obj: any, omitBy: (value: any) => boolean): any
   }
 }
 
@@ -36,9 +37,13 @@ const camelCaseObject = (obj: any, omitBy?: (value: any) => boolean): any =>
 const snakeCaseObject = (obj: any, omitBy?: (value: any) => boolean): any =>
   convertObject(obj, _.snakeCase, omitBy)
 
+const omitDeepBy = (obj: any, omitBy: (value: any) => boolean): any =>
+  convertObject(obj, (key: string): string => key, omitBy)
+
 _.mixin({
   camelCaseObject,
-  snakeCaseObject
+  snakeCaseObject,
+  omitDeepBy
 })
 
 export default _
