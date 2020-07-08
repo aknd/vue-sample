@@ -12,6 +12,7 @@ npm install
 ```
 npm run start
 ```
+To initialize the database, press Ctrl-C to shut down the server and restart it.
 
 ### Compiles and minifies for production
 ```
