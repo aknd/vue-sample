@@ -1,4 +1,4 @@
-export type Brand<K, T> = K & { __brand: T }
+type Brand<K, T> = K & { __brand: T }
 
 export type TodoId = Brand<number, 'TodoId'>
 

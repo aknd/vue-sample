@@ -1,4 +1,4 @@
-export type JSONValue =
+type JSONValue =
   | string
   | number
   | boolean
@@ -10,4 +10,4 @@ export interface JSONObject {
   [key: string]: JSONValue
 }
 
-export interface JSONArray extends Array<JSONValue> {}
+interface JSONArray extends Array<JSONValue> {}

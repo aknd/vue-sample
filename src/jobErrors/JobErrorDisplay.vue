@@ -12,7 +12,7 @@ export const jobErrorNameDict = {
   NOT_FOUND: 'not-found',
   TIMEOUT: 'timeout'
 } as const
-export type JobErrorKey = keyof typeof jobErrorNameDict
+type JobErrorKey = keyof typeof jobErrorNameDict
 export type JobErrorName = typeof jobErrorNameDict[JobErrorKey]
 
 @Component
